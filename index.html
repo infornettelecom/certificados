@@ -16,18 +16,24 @@
   --cinza: #6b7280;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: 'Poppins', Arial, sans-serif;
-  background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+  background: linear-gradient(270deg, var(--azul), var(--azul-claro), var(--azul));
+  background-size: 600% 600%;
+  animation: fundoAnimado 12s ease infinite;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes fundoAnimado {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .wrapper {
@@ -42,6 +48,12 @@ body {
   padding: 36px 32px;
   text-align: center;
   box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+  animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .logo {
@@ -93,6 +105,16 @@ button {
   font-weight: 600;
   cursor: pointer;
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(31,79,216,0.4);
+}
+
+button:active {
+  transform: scale(0.97);
 }
 
 button::after {
@@ -109,6 +131,14 @@ button::after {
 .resultado {
   margin-top: 22px;
   font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.resultado.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .resultado a {
@@ -182,6 +212,10 @@ button::after {
   </div>
 </div>
 
+<!-- Sons -->
+<audio id="som-ok" src="ok.mp3"></audio>
+<audio id="som-erro" src="erro.mp3"></audio>
+
 <script>
 const certificados = {
   "INF-2026-0001": "Isabela da Silva Sales - 24/01/2026",
@@ -215,18 +249,25 @@ const certificados = {
 function validar() {
   const codigo = document.getElementById("codigo").value.trim();
   const resultado = document.getElementById("resultado");
+  const somOk = document.getElementById("som-ok");
+  const somErro = document.getElementById("som-erro");
 
-  if (certificados[codigo]) {
-    resultado.innerHTML = `
-      <strong>Certificado válido ✅</strong><br>
-      ${certificados[codigo]}<br>
-      <a href="certificados/${codigo}.pdf" target="_blank">
-        📄 Baixar certificado
-      </a>
-    `;
-  } else {
-    resultado.innerHTML = "<span style='color:#dc2626'>❌ Certificado não encontrado.</span>";
-  }
+  resultado.classList.remove("show");
+
+  setTimeout(() => {
+    if (certificados[codigo]) {
+      somOk.play();
+      resultado.innerHTML = `
+        <strong style="color:#16a34a">Certificado válido ✅</strong><br>
+        ${certificados[codigo]}<br>
+        <a href="certificados/${codigo}.pdf" target="_blank">📄 Baixar certificado</a>
+      `;
+    } else {
+      somErro.play();
+      resultado.innerHTML = `<strong style="color:#dc2626">❌ Certificado não encontrado.</strong>`;
+    }
+    resultado.classList.add("show");
+  }, 100);
 }
 </script>
 
