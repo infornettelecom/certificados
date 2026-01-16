@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Validação de Certificados | Infornet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(120deg, #0d6efd, #6610f2);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Efeito de fundo */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      top: -150px;
+      left: -150px;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      bottom: -150px;
+      right: -150px;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 35px;
+      border-radius: 22px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 150px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 22px;
+      color: #212529;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      color: #adb5bd;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 14px 14px 42px;
+      border-radius: 12px;
+      border: 1px solid #ced4da;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #6610f2;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      background: linear-gradient(90deg, #6610f2, #0d6efd);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .resultado {
+      margin-top: 22px;
+      font-size: 14px;
+      color: #212529;
+    }
+
+    .resultado a {
+      display: inline-block;
+      margin-top: 12px;
+      background: #198754;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+    .resultado a:hover {
+      background: #157347;
+    }
+
+    .social {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social a {
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      padding: 10px 14px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(6px);
+    }
+
+    .social a i {
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <div class="card">
+      <img src="logo-infornet.png" class="logo" alt="Infornet">
+
+      <h1>Validação de Certificado</h1>
+      <div class="subtitle">Sistema oficial de validação Infornet</div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-key"></i>
+        <input type="text" id="codigo" placeholder="Digite o código do certificado">
+      </div>
+
+      <button onclick="validar()">
+        <i class="fa-solid fa-circle-check"></i> Validar certificado
+      </button>
+
+      <div class="resultado" id="resultado"></div>
+    </div>
+
+    <div class="social">
+      <a href="https://instagram.com/infornet.fibra" target="_blank">
+        <i class="fa-brands fa-instagram"></i> @infornet.fibra
+      </a>
+      <a href="https://infornet.in" target="_blank">
+        <i class="fa-solid fa-globe"></i> infornet.in
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const certificados = {
+      "INF-2026-0001": "Isabela da Silva Sales - 24/01/2026",
+      "INF-2026-0002": "Karine Rafael de Jesus - 24/01/2026",
+      "INF-2026-0003": "Railane Santos da Silva - 24/01/2026",
+      "INF-2026-0004": "Vitória Silva de Oliveira - 24/01/2026"
+    };
+
+    function validar() {
+      const codigo = document.getElementById("codigo").value.trim();
+      const resultado = document.getElementById("resultado");
+
+      if (certificados[codigo]) {
+        resultado.innerHTML = `
+          <strong>Certificado válido ✅</strong><br>
+          ${certificados[codigo]}<br>
+          <a href="./certificados/${codigo}.pdf" target="_blank">
+            📄 Baixar certificado
+          </a>
+        `;
+      } else {
+        resultado.innerHTML = "<span style='color:#dc3545'>❌ Certificado não encontrado.</span>";
+      }
+    }
+  </script>
+
+</body>
+</html>
