@@ -2,201 +2,212 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Validação de Certificados | Infornet Fibra</title>
+<title>Validação de Certificados | Infornet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root {
-  --azul: #2563eb;
-  --roxo: #6d28d9;
-  --cinza: #64748b;
+  --azul: #1f4fd8;
+  --azul-claro: #4f7cff;
+  --vermelho: #ff4b4b;
   --verde: #16a34a;
+  --cinza: #6b7280;
 }
 
 * {
   box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
   margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, var(--azul), var(--azul-claro));
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--azul), var(--roxo));
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #111;
 }
 
-.container {
-  background: #fff;
+.wrapper {
   width: 100%;
-  max-width: 520px;
-  padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  max-width: 440px;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 32px;
   text-align: center;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.25);
 }
 
 .logo {
-  max-width: 170px;
-  margin-bottom: 20px;
+  max-width: 150px;
+  margin-bottom: 12px;
 }
 
 h1 {
+  margin: 10px 0 6px;
   font-size: 22px;
-  margin-bottom: 5px;
 }
 
-.sub {
+.subtitle {
   font-size: 14px;
   color: var(--cinza);
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
-.input-box {
-  display: flex;
-  gap: 10px;
+.input-group {
+  position: relative;
+  margin-bottom: 18px;
 }
 
-input {
-  flex: 1;
-  padding: 14px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: var(--azul);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 18px 15px 44px;
+  border-radius: 14px;
+  border: 1px solid #dbe2f1;
   font-size: 15px;
+  outline: none;
 }
 
 button {
-  padding: 14px 20px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--roxo), var(--azul));
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(90deg, var(--azul), var(--azul-claro));
   color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  position: relative;
 }
 
-button:hover {
-  opacity: 0.9;
+button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--vermelho);
+  border-radius: 0 0 14px 14px;
 }
 
 .resultado {
-  margin-top: 25px;
-  padding: 20px;
-  border-radius: 12px;
-  display: none;
+  margin-top: 22px;
+  font-size: 14px;
 }
 
-.sucesso {
-  background: #ecfdf5;
-  border: 1px solid #bbf7d0;
-}
-
-.erro {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-}
-
-.selo {
-  color: var(--verde);
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.link {
+.resultado a {
   display: inline-block;
-  margin-top: 15px;
-  text-decoration: none;
-  color: #2563eb;
-  font-weight: 600;
-}
-
-footer {
-  margin-top: 30px;
-  text-align: center;
-  font-size: 13px;
-  color: #e5e7eb;
-}
-
-.footer-links {
-  margin-top: 10px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.footer-links a {
+  margin-top: 12px;
+  background: var(--verde);
   color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
   text-decoration: none;
+}
+
+.social {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 500;
 }
 
-.footer-links a:hover {
-  text-decoration: underline;
+.social .insta {
+  background: linear-gradient(135deg, #fd1d1d, #833ab4);
+  color: #fff;
+}
+
+.social .site {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <img src="assets/logo-infornet.png" class="logo" alt="Infornet Fibra">
+<div class="wrapper">
+  <div class="card">
+    <img src="logo-infornet.png" class="logo" alt="Infornet">
 
-  <h1>Validação de Certificado</h1>
-  <div class="sub">Sistema oficial de verificação Infornet Fibra</div>
+    <h1>Validação de Certificado</h1>
+    <div class="subtitle">Sistema oficial de validação Infornet</div>
 
-  <div class="input-box">
-    <input type="text" id="busca" placeholder="Código ou nome completo">
-    <button onclick="validar()">Verificar</button>
+    <div class="input-group">
+      <i class="fa-solid fa-key"></i>
+      <input id="codigo" placeholder="Digite o código do certificado">
+    </div>
+
+    <button onclick="validar()">
+      <i class="fa-solid fa-circle-check"></i> Validar certificado
+    </button>
+
+    <div class="resultado" id="resultado"></div>
   </div>
 
-  <div id="resultado" class="resultado"></div>
+  <div class="social">
+    <a class="insta" href="https://instagram.com/infornet.fibra" target="_blank">
+      <i class="fa-brands fa-instagram"></i> @infornet.fibra
+    </a>
+    <a class="site" href="https://infornet.in" target="_blank">
+      <i class="fa-solid fa-globe"></i> infornet.in
+    </a>
+  </div>
 </div>
 
-<footer>
-  © 2026 Infornet Fibra · Todos os direitos reservados
-  <div class="footer-links">
-    <a href="https://www.instagram.com/infornet.fibra" target="_blank">@infornet.fibra</a>
-    <a href="https://infornet.in" target="_blank">infornet.in</a>
-  </div>
-</footer>
-
 <script>
-const certificados = [
-  { codigo: "INF-2026-0001", nome: "Isabela da Silva Sales", data: "24/01/2026" },
-  { codigo: "INF-2026-0002", nome: "Karine Rafael de Jesus", data: "24/01/2026" },
-  { codigo: "INF-2026-0003", nome: "Railane Santos da Silva", data: "24/01/2026" },
-  { codigo: "INF-2026-0004", nome: "Vitória Silva de Oliveira", data: "24/01/2026" }
-];
+const certificados = {
+  "INF-2026-0001": "Isabela da Silva Sales - 24/01/2026",
+  "INF-2026-0002": "Karine Rafael de Jesus - 24/01/2026",
+  "INF-2026-0003": "Railane Santos da Silva - 24/01/2026",
+  "INF-2026-0004": "Vitória Silva de Oliveira - 24/01/2026"
+};
 
 function validar() {
-  const busca = document.getElementById("busca").value.trim().toLowerCase();
+  const codigo = document.getElementById("codigo").value.trim();
   const resultado = document.getElementById("resultado");
 
-  const cert = certificados.find(c =>
-    c.codigo.toLowerCase() === busca || c.nome.toLowerCase() === busca
-  );
-
-  if (cert) {
-    resultado.className = "resultado sucesso";
-    resultado.style.display = "block";
+  if (certificados[codigo]) {
     resultado.innerHTML = `
-      <div class="selo">✔ Certificado Autêntico</div>
-      <strong>${cert.nome}</strong><br>
-      Código: ${cert.codigo}<br>
-      Emitido em: ${cert.data}<br>
-      <a class="link" href="certificados/${cert.codigo}.pdf" target="_blank">
-        📄 Visualizar certificado
+      <strong>Certificado válido ✅</strong><br>
+      ${certificados[codigo]}<br>
+      <a href="certificados/${codigo}.pdf" target="_blank">
+        📄 Baixar certificado
       </a>
     `;
   } else {
-    resultado.className = "resultado erro";
-    resultado.style.display = "block";
-    resultado.innerHTML = "❌ Certificado não encontrado.";
+    resultado.innerHTML = "<span style='color:#dc2626'>❌ Certificado não encontrado.</span>";
   }
 }
 </script>
 
 </body>
 </html>
+
