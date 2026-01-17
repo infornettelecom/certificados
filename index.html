@@ -40,7 +40,7 @@ body {
 }
 
 /* PALAVRAS INSTITUCIONAIS NO FUNDO */
-.bg-words {
+.bg-words{
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -53,12 +53,17 @@ body {
   padding: 40px;
   text-align: center;
 
-  font-size: clamp(20px, 3vw, 46px);
-  font-weight: 800;
-  letter-spacing: 6px;
-  line-height: 1.6;
+  font-size: clamp(22px, 3.2vw, 54px);
+  font-weight: 900;
+  letter-spacing: 8px;
+  line-height: 1.7;
 
-  color: rgba(255,255,255,0.06);
+  /* MAIS VISÍVEL */
+  color: rgba(255,255,255,0.18);
+
+  /* AUMENTA CONTRASTE EM QUALQUER FUNDO */
+  text-shadow: 0 6px 22px rgba(0,0,0,0.35);
+
   text-transform: uppercase;
 }
 
