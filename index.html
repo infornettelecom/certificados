@@ -21,25 +21,54 @@
 body {
   margin: 0;
   font-family: 'Poppins', Arial, sans-serif;
-  background: linear-gradient(270deg, var(--azul), var(--azul-claro), var(--azul));
-  background-size: 600% 600%;
-  animation: fundoAnimado 12s ease infinite;
+
+  /* IMAGEM + FILTRO AZUL */
+  background:
+    linear-gradient(
+      rgba(31,79,216,0.88),
+      rgba(31,79,216,0.88)
+    ),
+    url("imagem/bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@keyframes fundoAnimado {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* PALAVRAS INSTITUCIONAIS NO FUNDO */
+.bg-words {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+  text-align: center;
+
+  font-size: clamp(20px, 3vw, 46px);
+  font-weight: 800;
+  letter-spacing: 6px;
+  line-height: 1.6;
+
+  color: rgba(255,255,255,0.06);
+  text-transform: uppercase;
 }
 
 .wrapper {
   width: 100%;
   max-width: 440px;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .card {
@@ -113,10 +142,6 @@ button:hover {
   box-shadow: 0 10px 25px rgba(31,79,216,0.4);
 }
 
-button:active {
-  transform: scale(0.97);
-}
-
 button::after {
   content: "";
   position: absolute;
@@ -183,6 +208,12 @@ button::after {
 
 <body>
 
+<!-- TEXTO INSTITUCIONAL NO FUNDO -->
+<div class="bg-words">
+  CONECTIVIDADE • TECNOLOGIA • INOVAÇÃO • FIBRA ÓPTICA •
+  ALTA VELOCIDADE • SEGURANÇA • ESTABILIDADE • SUPORTE •
+</div>
+
 <div class="wrapper">
   <div class="card">
     <img src="logo-infornet.png" class="logo" alt="Infornet">
@@ -191,28 +222,24 @@ button::after {
     <div class="subtitle">Sistema oficial de validação Infornet</div>
 
     <div class="input-group">
-      <i class="fa-solid fa-key"></i>
       <input id="codigo" placeholder="Digite o código do certificado">
     </div>
 
-    <button onclick="validar()">
-      <i class="fa-solid fa-circle-check"></i> Validar certificado
-    </button>
+    <button onclick="validar()">Validar certificado</button>
 
     <div class="resultado" id="resultado"></div>
   </div>
 
   <div class="social">
     <a class="insta" href="https://instagram.com/infornet.fibra" target="_blank">
-      <i class="fa-brands fa-instagram"></i> @infornet.fibra
+      @infornet.fibra
     </a>
     <a class="site" href="https://infornet.in" target="_blank">
-      <i class="fa-solid fa-globe"></i> infornet.in
+      infornet.in
     </a>
   </div>
 </div>
 
-<!-- Sons -->
 <audio id="som-ok" src="ok.mp3"></audio>
 <audio id="som-erro" src="erro.mp3"></audio>
 
@@ -264,7 +291,8 @@ function validar() {
       `;
     } else {
       somErro.play();
-      resultado.innerHTML = `<strong style="color:#dc2626">❌ Certificado não encontrado.</strong>`;
+      resultado.innerHTML =
+        `<strong style="color:#dc2626">❌ Certificado não encontrado.</strong>`;
     }
     resultado.classList.add("show");
   }, 100);
