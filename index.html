@@ -176,32 +176,77 @@ button::after {
   text-decoration: none;
 }
 
-.social {
-  margin-top: 22px;
+.social{
+  margin-top: 18px;
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.social a {
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-size: 14px;
-  text-decoration: none;
-  display: flex;
+.social .chip{
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 500;
+  gap: 10px;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
-.social .insta {
+.social .chip:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.28);
+}
+
+.social .chip:active{
+  transform: translateY(0px);
+}
+
+.social .chip-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  letter-spacing: 0.5px;
+
+  background: rgba(0,0,0,0.16);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.social .chip-insta .chip-icon{
   background: linear-gradient(135deg, #fd1d1d, #833ab4);
-  color: #fff;
+  border: none;
 }
 
-.social .site {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
+.social .chip-site .chip-icon{
+  background: rgba(255,255,255,0.14);
+}
+
+@media (max-width: 420px){
+  .social .chip{
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>
 </head>
@@ -231,13 +276,15 @@ button::after {
   </div>
 
   <div class="social">
-    <a class="insta" href="https://instagram.com/infornet.fibra" target="_blank">
-      @infornet.fibra
-    </a>
-    <a class="site" href="https://infornet.in" target="_blank">
-      infornet.in
-    </a>
-  </div>
+  <a class="chip chip-insta" href="https://instagram.com/infornet.fibra" target="_blank" rel="noopener">
+    <span class="chip-icon" aria-hidden="true">IG</span>
+    <span class="chip-text">@infornet.fibra</span>
+  </a>
+
+  <a class="chip chip-site" href="https://infornet.in" target="_blank" rel="noopener">
+    <span class="chip-icon" aria-hidden="true">WEB</span>
+    <span class="chip-text">infornet.in</span>
+  </a>
 </div>
 
 <audio id="som-ok" src="ok.mp3"></audio>
